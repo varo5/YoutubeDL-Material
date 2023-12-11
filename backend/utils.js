@@ -16,7 +16,7 @@ const is_windows = process.platform === 'win32';
 exports.getTrueFileName = (unfixed_path, type, force_ext = null) => {
     let fixed_path = unfixed_path;
 
-    const new_ext = (type === 'audio' ? 'mp3' : 'mp4');
+    const new_ext = (type === 'audio' ? 'wav' : 'mp4');
     let unfixed_parts = unfixed_path.split('.');
     const old_ext = unfixed_parts[unfixed_parts.length-1];
 
@@ -33,7 +33,7 @@ exports.getDownloadedFilesByType = async (basePath, type, full_metadata = false)
     if (!(await fs.pathExists(basePath))) return [];
 
     let files = [];
-    const ext = type === 'audio' ? 'mp3' : 'mp4';
+    const ext = type === 'audio' ? 'wav' : 'mp4';
     var located_files = await exports.recFindByExt(basePath, ext);
     for (let i = 0; i < located_files.length; i++) {
         let file = located_files[i];
@@ -115,7 +115,7 @@ exports.getJSONMp3 = (name, customPath, openReadPerms = false) => {
     var obj = null;
     if (!customPath) customPath = config_api.getConfigItem('ytdl_audio_folder_path');
     var jsonPath = path.join(customPath, name + ".info.json");
-    var alternateJsonPath = path.join(customPath, name + ".mp3.info.json");
+    var alternateJsonPath = path.join(customPath, name + ".wav.info.json");
     if (fs.existsSync(jsonPath)) {
         obj = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
     }
@@ -129,7 +129,7 @@ exports.getJSONMp3 = (name, customPath, openReadPerms = false) => {
 }
 
 exports.getJSON = (file_path, type) => {
-    const ext = type === 'audio' ? '.mp3' : '.mp4';
+    const ext = type === 'audio' ? '.wav' : '.mp4';
     let obj = null;
     var jsonPath = exports.removeFileExtension(file_path) + '.info.json';
     var alternateJsonPath = exports.removeFileExtension(file_path) + `${ext}.info.json`;
@@ -190,7 +190,7 @@ exports.getExpectedFileSize = (input_info_jsons) => {
 exports.fixVideoMetadataPerms = (file_path, type) => {
     if (is_windows) return;
 
-    const ext = type === 'audio' ? '.mp3' : '.mp4';
+    const ext = type === 'audio' ? '.wav' : '.mp4';
 
     const file_path_no_extension = exports.removeFileExtension(file_path);
 
@@ -210,7 +210,7 @@ exports.fixVideoMetadataPerms = (file_path, type) => {
 }
 
 exports.deleteJSONFile = (file_path, type) => {
-    const ext = type === 'audio' ? '.mp3' : '.mp4';
+    const ext = type === 'audio' ? '.wav' : '.mp4';
 
     const file_path_no_extension = exports.removeFileExtension(file_path);
 

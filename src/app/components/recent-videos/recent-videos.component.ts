@@ -265,7 +265,7 @@ export class RecentVideosComponent implements OnInit {
 
   downloadFile(file: DatabaseFile): void {
     const type = (file.isAudio ? 'audio' : 'video') as FileType;
-    const ext = type === 'audio' ? '.mp3' : '.mp4'
+    const ext = type === 'audio' ? '.wav' : '.mp4'
     const name = file.id;
     this.downloading_content[file.uid] = true;
     this.postsService.downloadFileFromServer(file.uid).subscribe(res => {

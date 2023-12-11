@@ -1564,7 +1564,7 @@ app.get('/api/stream', optionalJwt, async (req, res) => {
     const type = req.query.type;
     const uuid = req.query.uuid ? req.query.uuid : (req.user ? req.user.uid : null);
     const sub_id = req.query.sub_id;
-    const mimetype = type === 'audio' ? 'audio/mp3' : 'video/mp4';
+    const mimetype = type === 'audio' ? 'audio/wav' : 'video/mp4';
     var head;
     let uid = decodeURIComponent(req.query.uid);
 

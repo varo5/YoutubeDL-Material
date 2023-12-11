@@ -455,7 +455,7 @@ export class MainComponent implements OnInit {
   }
 
   downloadFileFromServer(file: DatabaseFile, type: string): void {
-    const ext = type === 'audio' ? 'mp3' : 'mp4'
+    const ext = type === 'audio' ? 'wav' : 'mp4'
     this.postsService.downloadFileFromServer(file.uid).subscribe(res => {
       const blob: Blob = res;
       saveAs(blob, decodeURIComponent(file.id) + `.${ext}`);

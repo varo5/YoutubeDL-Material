@@ -195,7 +195,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
         file_obj = this.db_file;
       }
 
-      const mime_type = file_obj.isAudio ? 'audio/mp3' : 'video/mp4' 
+      const mime_type = file_obj.isAudio ? 'audio/wav' : 'video/mp4' 
 
       const baseLocation = 'stream/';
       let fullLocation = this.baseStreamPath + baseLocation + `?test=test&uid=${file_obj['uid']}`;
@@ -311,7 +311,7 @@ export class PlayerComponent implements OnInit, AfterViewInit, OnDestroy {
 
   downloadFile(): void {
     const filename = this.playlist[0].title;
-    const ext = (this.playlist[0].type === 'audio/mp3') ? '.mp3' : '.mp4';
+    const ext = (this.playlist[0].type === 'audio/wav') ? '.wav' : '.mp4';
     this.downloading = true;
     this.postsService.downloadFileFromServer(this.uid, this.uuid).subscribe(res => {
       this.downloading = false;
